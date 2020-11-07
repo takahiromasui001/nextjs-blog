@@ -3,6 +3,7 @@ import React from 'react'
 import Layout from '../../components/layout'
 import MyDate from '../../components/myDate'
 import { getAllPostIds, getPostData } from '../../lib/posts'
+import utilStyles from '../../styles/utils.module.css'
 
 const Post = ({ postData }) => {
   return (
@@ -10,13 +11,15 @@ const Post = ({ postData }) => {
       <Head>
         <title>{postData.title}</title>
       </Head>
-      {postData.title}
-      <br />
-      {postData.id}
-      <br />
-      <MyDate dateString={postData.date} />
-      <br />
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></div>
+      <article>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <br />
+        <div className={utilStyles.lightText}>
+          <MyDate dateString={postData.date} />
+        </div>
+        <br />
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </article>
     </Layout>
   )
 }
