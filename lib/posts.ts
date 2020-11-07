@@ -6,9 +6,14 @@ import html from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
+type TPrePostData = Pick<matter.GrayMatterFile<string>, 'data'>
+type TPostData = {
+  id: string
+} & TPrePostData['data']
+
 export const getSortedPostsData = () => {
   const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames.map((fileName) => {
+  const allPostsData: TPostData[] = fileNames.map((fileName) => {
     // id を取得するためにファイル名から ".md" を削除する
     const id = fileName.replace(/\.md$/, '')
 
