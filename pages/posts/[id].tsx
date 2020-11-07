@@ -1,14 +1,20 @@
+import Head from 'next/head'
+import React from 'react'
 import Layout from '../../components/layout'
+import MyDate from '../../components/myDate'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 
 const Post = ({ postData }) => {
   return (
     <Layout>
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
       {postData.title}
       <br />
       {postData.id}
       <br />
-      {postData.data}
+      <MyDate dateString={postData.date} />
       <br />
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></div>
     </Layout>
